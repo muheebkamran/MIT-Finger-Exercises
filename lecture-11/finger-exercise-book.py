@@ -1,4 +1,4 @@
-"""Finger exercise pg no. 129: Implement a function satisfying the following
+"""Finger exercise pg no. 130: Implement a function satisfying the following
 specification. Hint: it will be convenient to use lambda in the body of
 the implementation"""
 def f(L1, L2):
