@@ -13,3 +13,19 @@ def sum_digits(s):
         return("Entered a wrong value")
 print(sum_digits(123))
 print(sum_digits('a2b3c'))
+
+#page no.197: Finger exercise: Implement a function that satisfies the specification
+
+
+def ind_an_even(L):
+    """Assumes L is a list of integers
+    Returns the first even number in L
+    Raises ValueError if L does not contain an even
+    number"""   
+    for i in L:
+        if i % 2 == 0:
+            return i
+    raise ValueError("The list does not contain any even numbers.")
+
+L = [1,3,4,5,7]
+print(ind_an_even(L))
