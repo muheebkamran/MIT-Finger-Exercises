@@ -190,3 +190,110 @@ e.add_friend("bob")
 print(e.has_friends())         # prints True
 print(e.past_salaries_list())  # prints [0, 1000, 3000, 0]
 print(e.past_salary_freq())    # prints {0: 2, 1000: 1, 3000: 1}
+
+
+
+# The second finger exercise of lec 19
+
+class Container(object):
+    """
+    A container object is a list and can store elements of any type
+    """
+    def __init__(self):
+        """
+        Initializes an empty list
+        """
+        self.myList = []
+
+    def size(self):
+        """
+        Returns the length of the container list
+        """
+        return len(self.myList)
+
+
+
+    def add(self, elem):
+        """
+        Adds the elem to one end of the container list, keeping the end
+        you add to consistent. Does not return anything
+        """
+        self.myList.append(elem)
+
+
+class Stack(Container):
+    """
+    A subclass of Container. Has an additional method to remove elements.
+    """
+    def remove(self):
+        """
+        The newest element in the container list is removed
+        Returns the element removed or None if the queue contains no elements
+        """
+        if len(self.myList) == 0:
+            return None
+        else:
+            self.myList.pop()
+
+# --------------------------------------------------
+# Test Case 1: Initial state & removing from empty stack
+# --------------------------------------------------
+s = Stack()
+print("Test 1: Empty stack")
+print("Size (expected 0):", s.size())
+print("Remove from empty (expected None):", s.remove())
+print()
+
+# --------------------------------------------------
+# Test Case 2: Adding and removing a single element
+# --------------------------------------------------
+print("Test 2: Single element")
+s.add(42)
+print("Size after adding 1 item (expected 1):", s.size())
+print("Removed item (expected 42):", s.remove())
+print("Size after removal (expected 0):", s.size())
+print("Remove again (expected None):", s.remove())
+print()
+
+# --------------------------------------------------
+# Test Case 3: LIFO order (Last-In, First-Out)
+# Newest elements should be removed first.
+# --------------------------------------------------
+print("Test 3: LIFO order check")
+s.add("first")
+s.add("second")
+s.add("third")
+
+print("Size (expected 3):", s.size())
+print("1st remove (expected 'third'):", s.remove())
+print("2nd remove (expected 'second'):", s.remove())
+print("3rd remove (expected 'first'):", s.remove())
+print("4th remove (expected None):", s.remove())
+print()
+
+# --------------------------------------------------
+# Test Case 4: Interleaved add and remove calls
+# --------------------------------------------------
+print("Test 4: Interleaved operations")
+s.add(1)
+s.add(2)
+print("Removed (expected 2):", s.remove())
+
+s.add(3)
+print("Removed (expected 3):", s.remove())
+print("Removed (expected 1):", s.remove())
+print("Removed (expected None):", s.remove())
+print()
+
+# --------------------------------------------------
+# Test Case 5: Heterogeneous element types
+# --------------------------------------------------
+print("Test 5: Multiple data types")
+s.add(100)
+s.add([1, 2, 3])
+s.add({"key": "value"})
+
+print("Removed dict (expected {'key': 'value'}):", s.remove())
+print("Removed list (expected [1, 2, 3]):", s.remove())
+print("Removed int (expected 100):", s.remove())
+print("Final size (expected 0):", s.size())
